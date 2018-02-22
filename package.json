@@ -1,0 +1,25 @@
+{
+    "name": "node-express-mongoose-crud",
+    "version": "1.0.0",
+    "description": "App de estudo em node utilizando o express e o mongoose para fazer crud no MongoDB",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/bognarjunior/Node-Express-Mongoose-Crud.git"
+    },
+    "dependencies": {
+        "body-parser": "^1.18.1",
+        "express": "~4.15.4",
+        "mongoose": "*",
+        "request": "~2.82.0"
+    },
+    "author": "Bognar Junior",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/bognarjunior/Node-Express-Mongoose-Crud/issues"
+    },
+    "homepage": "https://github.com/bognarjunior/Node-Express-Mongoose-Crud#readme"
+}
