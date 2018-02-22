@@ -53,6 +53,16 @@ router.route('/produtos')
         });
     })
 
+    .get(function (req, res) {
+        Produto.find(function (error, produtos) {  
+            if (error) {
+                res.send('Erro ao tentar selecionar todos os produtor: ', error);
+            }
+
+            res.json(produtos);
+        })
+    });
+
 app.use('/api', router);
 
 app.listen(port);
