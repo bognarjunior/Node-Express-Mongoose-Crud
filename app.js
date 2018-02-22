@@ -13,6 +13,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Produto = require('./app/models/produto');
 
+mongoose.Promise = global.Promise;
+
 //Conexão do Mlab
 mongoose.connect('mongodb://testenode:abcd123@ds243768.mlab.com:43768/node-crud-api', {
     useMongoClient: true
@@ -60,6 +62,49 @@ router.route('/produtos')
             }
 
             res.json(produtos);
+        })
+    });
+
+router.route('/produtos/:produto_id')
+    .get(function (req, res) {  
+        Produto.findById(req.params.produto_id, function (error, produto) {  
+            if (error) {
+                res.send('Produto não encontrado: ', error);
+            }
+
+            res.json(produto);
+        });
+    })
+
+    .put(function (req, res) {  
+        Produto.findById(req.params.produto_id, function (error, produto) {  
+            if (error) {
+                res.send('Produto não encontrado: ', + error);
+            }
+
+            produto.nome = req.body.nome;
+            produto.preco = req.body.preco;
+            produto.descricao = req.body.descricao;
+
+            produto.save(function (error) {  
+                if (error) {
+                    res.send('Erro ao atualizar o produto: ' + error);
+                }
+
+                res.json({message: 'Produto atualizado com sucesso!'});
+            })
+        })
+    })
+
+    .delete(function (req, res) {  
+        Produto.remove({
+            _id: req.params.produto_id
+        }, function (error) {  
+            if (error) {
+                res.send('Produto não encontrado!');  
+            }
+
+            res.json({ message: 'Produto Excluído com sucesso!'});
         })
     });
 
